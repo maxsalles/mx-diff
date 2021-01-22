@@ -1,3 +1,3 @@
-import hello from './hello'
+import diff from './diff'
 
-console.log(hello())
+export default diff

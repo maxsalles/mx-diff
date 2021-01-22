@@ -1,7 +1,7 @@
 {
-  "name": "my-project-name",
+  "name": "@mx-js/diff",
   "version": "0.1.0",
-  "description": "My project description",
+  "description": "Identification of differences between two objects",
   "main": "src/index.js",
   "files": [
     "./src"
@@ -16,11 +16,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/maxsalles/js-package-template.git"
+    "url": "https://github.com/maxsalles/mx-diff.git"
   },
   "keywords": [
-    "node",
-    "template"
+    "diff",
+    "objects"
   ],
   "author": "Max Salles (herond12@gmail.com)",
   "license": "MIT",

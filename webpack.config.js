@@ -1,6 +1,6 @@
 const path = require('path')
 
-const library = { name: 'myLibraryName' }
+const library = { name: 'diff' }
 
 module.exports = () => {
   const filename = `${library.name}.min.js`
