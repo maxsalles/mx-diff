@@ -1,6 +1,6 @@
 {
   "name": "@mx-js/diff",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "JavaScript package for calculating deep differences between two objects",
   "main": "src/index.js",
   "files": [
