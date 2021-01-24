@@ -29,7 +29,7 @@ describe('diff', () => {
     expect(perform).toBeCalledWith(originalWrapped, derivedWrapped)
   })
 
-  describe('when "original" isn`t bject', () => {
+  describe('when "original" isn`t an object', () => {
     it('calls the respective "wrap" with an empty object', () => {
       const original = 'original'
       const derived = {}
@@ -40,7 +40,7 @@ describe('diff', () => {
     })
   })
 
-  describe('when "derived" isn`t bject', () => {
+  describe('when "derived" isn`t an object', () => {
     it('calls the respective "wrap" with an empty object', () => {
       const original = {}
       const derived = 'derived'

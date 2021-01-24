@@ -3,10 +3,11 @@ import wrap from '../src/wrap'
 describe('wrap', () => {
   const object = {}
 
-  it('returns an object with "value", and "type" properties, and "toString" method', () => {
+  it('returns an object with "value", "path", and "type" properties, and "toString" method', () => {
     expect(wrap(object)).toEqual({
       type: typeof object,
       value: object,
+      path: { string: '', chain: [] },
       toString: expect.any(Function)
     })
   })
@@ -17,12 +18,19 @@ describe('wrap', () => {
     })
   })
 
-  describe('when "wrap" is called with "history"', () => {
-    const history = 'some.history'
+  describe('when "wrap" is called with "path"', () => {
+    const path = {
+      string: 'some.history',
+      chain: ['some', 'history']
+    }
+
+    it('assigns the property "path" the argument "path"', () => {
+      expect(wrap(object, path).path).toEqual(path)
+    })
 
     describe('"toString" method', () => {
-      it('returns "history"', () => {
-        expect(wrap(object, history).toString()).toBe(history)
+      it('returns "path.string"', () => {
+        expect(wrap(object, path).toString()).toBe(path.string)
       })
     })
   })

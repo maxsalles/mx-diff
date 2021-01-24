@@ -1,7 +1,8 @@
-export default function wrap (object, history = '') {
+export default function wrap (object, path = { string: '', chain: [] }) {
   return {
     type: typeof object,
     value: object,
-    toString: () => history
+    path: path,
+    toString: () => path.string
   }
 }

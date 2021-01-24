@@ -3,7 +3,7 @@ export default function getDeletion (originalWrapped, derivedWrapped) {
 
   return {
     type: 'deletion',
-    path: `${originalWrapped}`,
+    path: originalWrapped.path,
     previous: originalWrapped.value
   }
 }

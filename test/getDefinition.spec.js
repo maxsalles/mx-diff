@@ -11,17 +11,16 @@ describe('getDefinition', () => {
 
   describe('when "originalWrapped" is "undefined" and "derivedWrapped" isn`t', () => {
     it('returns an object with the definition`s description', () => {
-      const path = 'some.path'
       const originalWrapped = undefined
 
       const derivedWrapped = {
         value: 'value',
-        toString: () => path
+        path: { string: 'some.path', chain: ['some', 'path'] }
       }
 
       expect(getDefinition(originalWrapped, derivedWrapped)).toEqual({
         type: 'definition',
-        path: `${derivedWrapped}`,
+        path: derivedWrapped.path,
         value: derivedWrapped.value
       })
     })

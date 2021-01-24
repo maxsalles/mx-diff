@@ -26,35 +26,43 @@ describe('heap', () => {
   })
 
   describe('when "wraped"`s "value" owns the "property"', () => {
-    const history = 'some.path'
-    const object = { [property]: 'some value' }
     const wraped = {
-      value: object,
-      toString: () => history
+      value: { [property]: 'some value' },
+      path: { string: 'some.path', chain: ['some', 'path'] },
+      toString: () => 'some.path'
     }
 
-    it('returns the "wrap" call returns', () => {
+    it('calls "wrap" with the proper arguments and returns the value of this call', () => {
       const wrapReturn = {}
 
       wrap.mockReturnValue(wrapReturn)
 
       expect(heap(wraped, property)).toBe(wrapReturn)
-      expect(wrap).toBeCalledWith(object[property], `${history}.${property}`)
+
+      expect(wrap).toBeCalledWith(
+        wraped.value[property],
+        { string: `${wraped}.${property}`, chain: [...wraped.path.chain, property] }
+      )
     })
 
     describe('when "wraped"`s "value" is an "Array"', () => {
-      const property = 0
-      const history = 'some.path'
-      const object = ['some value']
+      const property = '0'
       const wraped = {
-        value: object,
-        toString: () => history
+        value: ['some value'],
+        path: { string: 'some.path', chain: ['some', 'path'] },
+        toString: () => 'some.path'
       }
 
-      it('calls "wrap" with "history" argument in the proper notation', () => {
+      it('calls "wrap" with the proper arguments', () => {
         heap(wraped, property)
 
-        expect(wrap).toBeCalledWith(object[property], `${history}[${property}]`)
+        expect(wrap).toBeCalledWith(
+          wraped.value[property],
+          {
+            string: `${wraped}[${property}]`,
+            chain: [...wraped.path.chain, parseInt(property)]
+          }
+        )
       })
     })
   })

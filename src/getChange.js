@@ -4,7 +4,7 @@ export default function getChange (originalWrapped, derivedWrapped) {
 
   return {
     type: 'change',
-    path: `${originalWrapped}`,
+    path: originalWrapped.path,
     previous: originalWrapped.value,
     value: derivedWrapped.value
   }

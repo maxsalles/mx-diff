@@ -11,18 +11,16 @@ describe('getDeletion', () => {
 
   describe('when "originalWrapped" isn`t "undefined" and "derivedWrapped" is', () => {
     it('returns an object with the deletion`s description', () => {
-      const path = 'some.path'
-
       const originalWrapped = {
         value: 'value',
-        toString: () => path
+        path: { string: 'some.path', chain: ['some', 'path'] }
       }
 
       const derivedWrapped = undefined
 
       expect(getDeletion(originalWrapped, derivedWrapped)).toEqual({
         type: 'deletion',
-        path: `${originalWrapped}`,
+        path: originalWrapped.path,
         previous: originalWrapped.value
       })
     })

@@ -8,6 +8,8 @@ export default function heap (wraped, property) {
 
   return wrap(
     value[property],
-    Array.isArray(value) ? `${wraped}[${property}]` : `${wraped}.${property}`
+    Array.isArray(value)
+      ? { string: `${wraped}[${property}]`, chain: [...wraped.path.chain, parseInt(property)] }
+      : { string: `${wraped}.${property}`, chain: [...wraped.path.chain, property] }
   )
 }

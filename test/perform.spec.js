@@ -123,7 +123,10 @@ describe('perform', () => {
     /*  2 */ [
       {
         type: 'change',
-        path: '.property',
+        path: {
+          string: '.property',
+          chain: ['property']
+        },
         previous: 'value',
         value: 'different value'
       }
@@ -131,32 +134,47 @@ describe('perform', () => {
     /*  3 */ [
       {
         type: 'deletion',
-        path: '.property',
+        path: {
+          string: '.property',
+          chain: ['property']
+        },
         previous: 'value'
       }
     ],
     /*  4 */ [
       {
         type: 'definition',
-        path: '.property',
+        path: {
+          string: '.property',
+          chain: ['property']
+        },
         value: 'value'
       }
     ],
     /*  5 */ [
       {
         type: 'change',
-        path: '.property',
+        path: {
+          string: '.property',
+          chain: ['property']
+        },
         previous: 'value',
         value: 'different value'
       },
       {
         type: 'deletion',
-        path: '.otherProperty',
+        path: {
+          string: '.otherProperty',
+          chain: ['otherProperty']
+        },
         previous: 'other value'
       },
       {
         type: 'definition',
-        path: '.anotherProperty',
+        path: {
+          string: '.anotherProperty',
+          chain: ['anotherProperty']
+        },
         value: 'another value'
       }
     ],
@@ -165,26 +183,38 @@ describe('perform', () => {
     /*  8 */ [
       {
         type: 'change',
-        path: '[1]',
+        path: {
+          string: '[1]',
+          chain: [1]
+        },
         previous: 'value',
         value: 'different value'
       },
       {
         type: 'definition',
-        path: '[2]',
+        path: {
+          string: '[2]',
+          chain: [2]
+        },
         value: 'other value'
       }
     ],
     /*  9 */ [
       {
         type: 'change',
-        path: '[1]',
+        path: {
+          string: '[1]',
+          chain: [1]
+        },
         previous: 'value',
         value: 'different value'
       },
       {
         type: 'deletion',
-        path: '[2]',
+        path: {
+          string: '[2]',
+          chain: [2]
+        },
         previous: 'other value'
       }
     ],
@@ -192,38 +222,59 @@ describe('perform', () => {
     /* 11 */ [
       {
         type: 'change',
-        path: '.property.property.property',
+        path: {
+          string: '.property.property.property',
+          chain: ['property', 'property', 'property']
+        },
         previous: 'value',
         value: 'different value'
       },
       {
         type: 'deletion',
-        path: '.property.property.otherProperty',
+        path: {
+          string: '.property.property.otherProperty',
+          chain: ['property', 'property', 'otherProperty']
+        },
         previous: 'other value'
       },
       {
         type: 'definition',
-        path: '.property.property.anotherProperty',
+        path: {
+          string: '.property.property.anotherProperty',
+          chain: ['property', 'property', 'anotherProperty']
+        },
         value: 'another value'
       },
       {
         type: 'deletion',
-        path: '.property.otherProperty',
+        path: {
+          string: '.property.otherProperty',
+          chain: ['property', 'otherProperty']
+        },
         previous: 'other value'
       },
       {
         type: 'definition',
-        path: '.property.anotherProperty',
+        path: {
+          string: '.property.anotherProperty',
+          chain: ['property', 'anotherProperty']
+        },
         value: 'another value'
       },
       {
         type: 'deletion',
-        path: '.otherProperty',
+        path: {
+          string: '.otherProperty',
+          chain: ['otherProperty']
+        },
         previous: 'other value'
       },
       {
         type: 'definition',
-        path: '.anotherProperty',
+        path: {
+          string: '.anotherProperty',
+          chain: ['anotherProperty']
+        },
         value: 'another value'
       },
     ],
@@ -231,71 +282,107 @@ describe('perform', () => {
     /* 13 */ [
       {
         type: 'change',
-        path: '[1][1]',
+        path: {
+          string: '[1][1]',
+          chain: [1, 1]
+        },
         previous: 'value',
         value: 'different value'
       },
       {
         type: 'deletion',
-        path: '[1][2]',
+        path: {
+          string: '[1][2]',
+          chain: [1, 2]
+        },
         previous: ['another value']
       },
       {
         type: 'definition',
-        path: '[2]',
+        path: {
+          string: '[2]',
+          chain: [2]
+        },
         value: 'another value'
       }
     ],
     /* 14 */ [
       {
         type: 'change',
-        path: '.property[1][0]',
+        path: {
+          string: '.property[1][0]',
+          chain: ['property', 1, 0]
+        },
         previous: 'value',
         value: 'different value'
       },
       {
         type: 'change',
-        path: '.property[1][1].property',
+        path: {
+          string: '.property[1][1].property',
+          chain: ['property', 1, 1, 'property']
+        },
         previous: 'value',
         value: 'different value'
       },
       {
         type: 'deletion',
-        path: '.property[1][1].otherProperty',
+        path: {
+          string: '.property[1][1].otherProperty',
+          chain: ['property', 1, 1, 'otherProperty']
+        },
         previous: 'other value'
       },
       {
         type: 'definition',
-        path: '.property[1][1].anotherProperty',
+        path: {
+          string: '.property[1][1].anotherProperty',
+          chain: ['property', 1, 1, 'anotherProperty']
+        },
         value: 'another value'
       }
     ],
     /* 15 */ [
       {
         type: 'change',
-        path: '[0]',
+        path: {
+          string: '[0]',
+          chain: [0]
+        },
         previous: 'value',
         value: 'different value'
       },
       {
         type: 'change',
-        path: '[1].property',
+        path: {
+          string: '[1].property',
+          chain: [1, 'property']
+        },
         previous: 'value',
         value: 'different value'
       },
       {
         type: 'deletion',
-        path: '[1].otherProperty',
+        path: {
+          string: '[1].otherProperty',
+          chain: [1, 'otherProperty']
+        },
         previous: 'other value'
       },
       {
         type: 'definition',
-        path: '[1].anotherProperty',
+        path: {
+          string: '[1].anotherProperty',
+          chain: [1, 'anotherProperty']
+        },
         value: 'another value'
       },
       {
         type: 'deletion',
-        path: '[2]',
+        path: {
+          string: '[2]',
+          chain: [2]
+        },
         previous: 'other value'
       }
     ]

@@ -22,11 +22,9 @@ describe('getChanges', () => {
 
   describe('when arguments have different "value" properties', () => {
     it('returns an object with the change`s description', () => {
-      const path = 'some.path'
-
       const originalWrapped = {
         value: 'original value',
-        toString: () => path
+        path: { string: 'some.path', chain: ['some', 'path'] }
       }
 
       const derivedWrapped = {
@@ -35,7 +33,7 @@ describe('getChanges', () => {
 
       expect(getChange(originalWrapped, derivedWrapped)).toEqual({
         type: 'change',
-        path: `${originalWrapped}`,
+        path: originalWrapped.path,
         previous: originalWrapped.value,
         value: derivedWrapped.value
       })

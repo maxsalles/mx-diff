@@ -3,7 +3,7 @@ export default function getDefinitions (originalWrapped, derivedWrapped) {
 
   return {
     type: 'definition',
-    path: `${derivedWrapped}`,
+    path: derivedWrapped.path,
     value: derivedWrapped.value
   }
 }
