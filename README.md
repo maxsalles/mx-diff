@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/github/license/maxsalles/mx-diff.svg)](LICENSE)
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/maxsalles/mx-diff/test/master)](https://github.com/maxsalles/mx-diff/actions?query=workflow%3Atest+branch%3Amaster)
 
-**Package name** is a (...).
+**MX Diff** is a package for calculating deep differences between two objects.
 
 ## Prerequisites
 
