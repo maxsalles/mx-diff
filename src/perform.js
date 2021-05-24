@@ -5,6 +5,10 @@ import getProperties from './getProperties'
 import heap from './heap'
 
 export default function perform (originalWrapped, derivedWrapped) {
+  if (originalWrapped.type !== 'object' && derivedWrapped.type !== 'object') {
+    return [getChange(originalWrapped, derivedWrapped)]
+  }
+
   const properties = getProperties(originalWrapped.value, derivedWrapped.value)
 
   return properties.reduce((result, property) => {

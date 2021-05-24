@@ -28,26 +28,4 @@ describe('diff', () => {
     expect(wrap.mock.calls).toEqual([[original], [derived]])
     expect(perform).toBeCalledWith(originalWrapped, derivedWrapped)
   })
-
-  describe('when "original" isn`t an object', () => {
-    it('calls the respective "wrap" with an empty object', () => {
-      const original = 'original'
-      const derived = {}
-
-      diff(original, derived)
-
-      expect(wrap.mock.calls).toEqual([[{}], [derived]])
-    })
-  })
-
-  describe('when "derived" isn`t an object', () => {
-    it('calls the respective "wrap" with an empty object', () => {
-      const original = {}
-      const derived = 'derived'
-
-      diff(original, derived)
-
-      expect(wrap.mock.calls).toEqual([[original], [{}]])
-    })
-  })
 })

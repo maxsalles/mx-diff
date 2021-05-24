@@ -114,7 +114,9 @@ describe('perform', () => {
           anotherProperty: 'another value'
         }
       ]
-    ]
+    ],
+    /* 16 */
+    ['value', 'different value']
   ].map(objects => objects.map(object => wrap(object)))
 
   const expectations = [
@@ -384,6 +386,18 @@ describe('perform', () => {
           chain: [2]
         },
         previous: 'other value'
+      }
+    ],
+    /* 16 */
+    [
+      {
+        type: 'change',
+        path: {
+          string: '',
+          chain: []
+        },
+        previous: 'value',
+        value: 'different value'
       }
     ]
   ]
