@@ -116,7 +116,11 @@ describe('perform', () => {
       ]
     ],
     /* 16 */
-    ['value', 'different value']
+    ['value', 'different value'],
+    /* 17 */
+    ['value', { property: 'value' }],
+    /* 18 */
+    [{ property: 'value' }, 'value']
   ].map(objects => objects.map(object => wrap(object)))
 
   const expectations = [
@@ -398,6 +402,28 @@ describe('perform', () => {
         },
         previous: 'value',
         value: 'different value'
+      }
+    ],
+    /* 17 */
+    [
+      {
+        type: 'definition',
+        path: {
+          string: '.property',
+          chain: ['property']
+        },
+        value: 'value'
+      }
+    ],
+    /* 18 */
+    [
+      {
+        type: 'deletion',
+        path: {
+          string: '.property',
+          chain: ['property']
+        },
+        previous: 'value'
       }
     ]
   ]
