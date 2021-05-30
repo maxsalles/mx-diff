@@ -1,31 +1,71 @@
-jest.mock('../src/perform')
-jest.mock('../src/wrap')
-
 import diff from '../src/diff'
-import perform from '../src/perform'
-import wrap from '../src/wrap'
 
 describe('diff', () => {
-  afterEach(() => {
-    wrap.mockClear()
-    perform.mockClear()
-  })
+  describe('when both parameters are non-objects', () => {
+    describe('and are different', () => {
+      const original = 'value'
+      const derived = 'new value'
 
-  it('returns the result of calling "perform"', () => {
-    const original = {}
-    const derived = {}
-    const originalWrapped = {}
-    const derivedWrapped = {}
-    const result = []
+      it('returns "hasChanged" as "true" and "details" as empty array', () => {
+        const result = diff(original, derived)
 
-    wrap
-      .mockReturnValueOnce(originalWrapped)
-      .mockReturnValueOnce(derivedWrapped)
+        expect(result).toEqual({
+          hasChanged: true,
+          details: expect.any(Array)
+        })
 
-    perform.mockReturnValue(result)
+        expect(result.details.length).toBe(0)
+      })
+    })
 
-    expect(diff(original, derived)).toBe(result)
-    expect(wrap.mock.calls).toEqual([[original], [derived]])
-    expect(perform).toBeCalledWith(originalWrapped, derivedWrapped)
+    describe('and are equal', () => {
+      const original = 'value'
+      const derived = original
+
+      it('returns "hasChanged" as "false" and "details" as empty array', () => {
+        const result = diff(original, derived)
+
+        expect(result).toEqual({
+          hasChanged: false,
+          details: expect.any(Array)
+        })
+
+        expect(result.details.length).toBe(0)
+      })
+    })
+
+    describe('when one of the parameters is an object', () => {
+      describe('and both are different', () => {
+        const original = { attribute: 'value' }
+        const derived = { attribute: 'new value' }
+
+        it('returns "hasChanged" as "true" and "details" as non-empty array', () => {
+          const result = diff(original, derived)
+
+          expect(result).toEqual({
+            hasChanged: true,
+            details: expect.any(Array)
+          })
+
+          expect(result.details.length).not.toBe(0)
+        })
+      })
+
+      describe('and both are equal', () => {
+        const original = { attribute: 'value' }
+        const derived = original
+
+        it('returns "hasChanged" as "false" and "details" as empty array', () => {
+          const result = diff(original, derived)
+
+          expect(result).toEqual({
+            hasChanged: false,
+            details: expect.any(Array)
+          })
+
+          expect(result.details.length).toBe(0)
+        })
+      })
+    })
   })
 })

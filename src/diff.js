@@ -1,6 +1,13 @@
-import perform from './perform'
+import getDetails from './getDetails'
 import wrap from './wrap'
 
 export default function diff (original, derived) {
-  return perform(wrap(original), wrap(derived))
+  const details = getDetails(wrap(original), wrap(derived))
+
+  return {
+    hasChanged: !!details.length || (
+      typeof original !== 'object' && typeof derived !== 'object' && original !== derived
+    ),
+    details
+  }
 }

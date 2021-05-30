@@ -1,7 +1,7 @@
 import wrap from '../src/wrap'
-import perform from '../src/perform'
+import getDetails from '../src/getDetails'
 
-describe('perform', () => {
+describe('getDetails', () => {
   const examples = [
     /*  0 */ [{}, {}],
     /*  1 */ [{ property: 'value' }, { property: 'value' }],
@@ -420,7 +420,7 @@ describe('perform', () => {
 
   it('returns a list of differences between two objects', () => {
     examples.forEach((example, i) => {
-      expect(perform(...example)).toEqual(expectations[i])
+      expect(getDetails(...example)).toEqual(expectations[i])
     })
   })
 })
