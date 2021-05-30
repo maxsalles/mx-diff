@@ -393,17 +393,7 @@ describe('perform', () => {
       }
     ],
     /* 16 */
-    [
-      {
-        type: 'change',
-        path: {
-          string: '',
-          chain: []
-        },
-        previous: 'value',
-        value: 'different value'
-      }
-    ],
+    [],
     /* 17 */
     [
       {
