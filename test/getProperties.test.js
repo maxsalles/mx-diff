@@ -7,9 +7,14 @@ describe('getProperties', () => {
       { property: 'value' },
       { otherProperty: 'other value', anotherProperty: 'another value' },
       [],
-      ['value', 'other value']
+      ['value', 'other value'],
+      'value',
+      12,
+      Object.assign(() => {}, { functionProperty: 'value' })
     ]
 
-    expect(getProperties(...objects)).toEqual(['property', 'otherProperty', 'anotherProperty', '0', '1'])
+    expect(getProperties(...objects)).toEqual([
+      'property', 'otherProperty', 'anotherProperty', '0', '1', 'functionProperty'
+    ])
   })
 })

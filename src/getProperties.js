@@ -1,3 +1,7 @@
 export default function getProperties (...objects) {
-  return [...new Set(objects.map(Object.keys).flat())]
+  return [...new Set(
+    objects.filter(
+      object => ['object', 'function'].includes(typeof object)
+    ).map(Object.keys).flat())
+  ]
 }

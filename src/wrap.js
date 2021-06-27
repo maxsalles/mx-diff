@@ -1,8 +1,8 @@
-export default function wrap (object, path = { string: '', chain: [] }) {
+export default function wrap (value, path = { string: '', chain: [] }) {
   return {
-    type: typeof object,
-    value: object,
-    path: path,
-    toString: () => path.string
+    type: typeof value,
+    isArray: Array.isArray(value),
+    value,
+    path
   }
 }

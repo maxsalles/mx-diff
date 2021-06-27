@@ -1,15 +1,13 @@
 import wrap from './wrap'
 
-export default function heap (wraped, property) {
-  const value = wraped.value
-
-  if (typeof value !== 'object') return
-  if (!(property in value)) return
+export default function heap ({ value, type, isArray, path }, property) {
+  if (type !== 'object' || !(property in value)) return
 
   return wrap(
     value[property],
-    Array.isArray(value)
-      ? { string: `${wraped}[${property}]`, chain: [...wraped.path.chain, parseInt(property)] }
-      : { string: `${wraped}.${property}`, chain: [...wraped.path.chain, property] }
+    {
+      string: `${path.string}${isArray ? `[${property}]` : `.${property}` }`,
+      chain: [...path.chain, property]
+    }
   )
 }
