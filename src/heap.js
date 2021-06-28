@@ -6,7 +6,7 @@ export default function heap ({ value, type, isArray, path }, property) {
   return wrap(
     value[property],
     {
-      string: `${path.string}${isArray ? `[${property}]` : `.${property}` }`,
+      string: `${path.string}${isArray ? `[${property}]` : `.${property}`}`,
       chain: [...path.chain, property]
     }
   )
